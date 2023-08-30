@@ -61,7 +61,54 @@ const currentOs = {
 
 console.log(currentOs)
  // 2. path
+ // Modulo responsáveis pelos caminhos dos arquivos
+ console.log(path.sep) // Mostra o separador de arquivos usado pelo OS
 
- // 3. fs
+ const filePath = path.join('/content', 'subfolder', 'test.txt') // Junta diferentes partes em um caminho
+ console.log(path.join('grandParentFolder', 'parentFolder', 'child.txt'))
+ const base = path.basename(filePath) // pega o arquivo da base do caminho
+ const pathInfo = {
+    fileName: path.basename(myPath),
+    folderName: path.dirname(myPath),
+    fileExtension: path.extname(myPath),
+    absoluteOrNot: path.isAbsolute(myPath),
+    detailInfo: path.parse(myPath),
+}
+
+/* 
+Vai printar :
+{
+  fileName: 'app.js',
+  folderName: '/mnt/c/Desktop/NodeJSTut',
+  fileExtension: '.js',
+  absoluteOrNot: true,
+  detailInfo: {
+    root: '/',
+    dir: '/mnt/c/Desktop/NodeJSTut',
+    base: 'app.js',
+    ext: '.js',
+    name: 'app'
+  }
+}
+*/
+const absolute = path.resolve(__dirname, params) // Transforma em um path absoluto
+ // 3. fs - Leito de arquivos
+
+    // Criação de diretório
+    // A função de criação é assíncrona, logo não bloqueia a execução do código.
+
+    const fs = require('fs')
+    fs.mkdir('./myFolder', (err) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log('Folder Created')
+        }
+    })
+
+    // Criando um arquivo async
+    // É possível criar um arquivo de forma síncrona  onde o Node espera a criação do arquivo antes de ir para a próxima linha
+    // É tbm possível usar uma abordagem assíncrona: Dessa forma o Nodejs não espera a operação de escrita para ir para a próxima linha, ao invés disso chama uma callback quando todo o processo concluir.
+    // o método writeFile() é provido para ser usado de forma assíncrona
 
  // 4. HTTP 
